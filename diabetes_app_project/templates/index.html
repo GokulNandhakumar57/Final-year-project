@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-size: 1.1em;
+            color: #555;
+        }
+        input[type="text"], input[type="number"], input[type="submit"], select {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .submission-table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        .submission-table th, .submission-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .submission-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Diabetes Prediction</h1>
+    
+    <form action="/" method="POST">
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender" required>
+            <option value="">Select</option>
+            <option value="Male" {% if user_data.gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if user_data.gender == 'Female' %}selected{% endif %}>Female</option>
+        </select>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" value="{{ user_data.age }}" required>
+
+        <label for="hypertension">Hypertension (1 = Yes, 0 = No):</label>
+        <input type="number" id="hypertension" name="hypertension" value="{{ user_data.hypertension }}" required>
+
+        <label for="heart_disease">Heart Disease (1 = Yes, 0 = No):</label>
+        <input type="number" id="heart_disease" name="heart_disease" value="{{ user_data.heart_disease }}" required>
+
+        <label for="smoking_history">Smoking History:</label>
+        <select name="smoking_history" id="smoking_history" required>
+            <option value="">Select</option>
+            <option value="Never smoked" {% if user_data.smoking_history == 'Never smoked' %}selected{% endif %}>Never smoked</option>
+            <option value="Smokes" {% if user_data.smoking_history == 'Smokes' %}selected{% endif %}>Smokes</option>
+            <option value="Formerly smoked" {% if user_data.smoking_history == 'Formerly smoked' %}selected{% endif %}>Formerly smoked</option>
+        </select>
+
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi" step="0.1" value="{{ user_data.bmi }}" required>
+
+        <label for="hba1c_level">HbA1c Level (%):</label>
+        <input type="number" id="hba1c_level" name="hba1c_level" step="0.1" value="{{ user_data.hba1c_level }}" required>
+
+        <label for="blood_glucose_level">Blood Glucose Level (mg/dL):</label>
+        <input type="number" id="blood_glucose_level" name="blood_glucose_level" value="{{ user_data.blood_glucose_level }}" required>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3>Prediction Result: {{ result }}</h3>
+    </div>
+    {% endif %}
+
+    {% if user_data %}
+    <div class="result">
+        <h3>Submitted Details:</h3>
+        <table class="submission-table">
+            <thead>
+                <tr>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Hypertension</th>
+                    <th>Heart Disease</th>
+                    <th>Smoking History</th>
+                    <th>BMI</th>
+                    <th>HbA1c Level</th>
+                    <th>Blood Glucose Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ user_data["Gender"] }}</td>
+                    <td>{{ user_data["Age"] }}</td>
+                    <td>{{ user_data["Hypertension"] }}</td>
+                    <td>{{ user_data["Heart Disease"] }}</td>
+                    <td>{{ user_data["Smoking History"] }}</td>
+                    <td>{{ user_data["BMI"] }}</td>
+                    <td>{{ user_data["HbA1c Level"] }}</td>
+                    <td>{{ user_data["Blood Glucose Level"] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

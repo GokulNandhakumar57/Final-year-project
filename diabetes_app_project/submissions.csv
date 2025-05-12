@@ -1,0 +1,11 @@
+Gender,Age,Hypertension,Heart Disease,Smoking History,BMI,HbA1c Level,Blood Glucose Level
+Male,24,0,0,No Info,18.8,0.0,0.0
+Male,22,0,0,ever,19.0,5.6,130.0
+Female,33,1,1,never,22.0,4.3,140.0
+Female,33,1,1,never,22.0,4.3,140.0
+Female,25,0,0,Never smoked,22.0,4.5,130.0
+Male,45,1,1,Never smoked,21.0,5.6,145.0
+Female,40,1,0,Never smoked,20.0,6.5,140.0
+Male,45,1,1,Formerly smoked,28.0,7.2,145.0
+Male,22,0,0,Never smoked,20.5,6.1,120.0
+Male,21,0,0,Never smoked,19.0,6.2,120.0
