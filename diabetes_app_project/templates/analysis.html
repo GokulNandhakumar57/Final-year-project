@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis - Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+        }
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: #4a90e2;
+            color: white;
+            font-size: 1.5em;
+        }
+        .back-btn {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .charts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .chart {
+            margin: 20px;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .chart img {
+            max-width: 500px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    Diabetes Prediction - Feature Analysis
+</div>
+
+<div style="text-align:center;">
+    <a href="/" class="back-btn">← Back to Home</a>
+</div>
+
+<div class="charts">
+    {% for plot in plots %}
+        <div class="chart">
+            <img src="data:image/png;base64,{{ plot }}" alt="Analysis Graph">
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
